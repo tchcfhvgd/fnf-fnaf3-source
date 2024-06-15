@@ -1,8 +1,5 @@
 //SHADERTOY PORT FIX
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
 uniform float iTime;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
@@ -15,12 +12,12 @@ uniform float iTime;
 void mainImage(void)
 {
     // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv = fragCoord/iResolution.xy;
+    vec2 uv = openfl_TextureCoordv.xy;
     
-    float depth = 5.0f;
+    float depth = 5.0;
 
-	float dx = distance(uv.x, .5f);
-    float dy = distance(uv.y, .5f);
+	float dx = distance(uv.x, .5);
+    float dy = distance(uv.y, .5);
     
     
     float offset = (dx*.2) * dy;
