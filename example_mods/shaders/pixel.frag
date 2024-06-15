@@ -1,9 +1,8 @@
 #pragma header
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
 
-uniform float pxSize = 0.0;
+uniform float pxSize;
 void main() {
-	vec2 uv = fragCoord.xy / openfl_TextureSize.xy;
+	vec2 uv = openfl_TextureCoordv.xy;
 	
 	float plx = openfl_TextureSize.x * pxSize / 500.0;
 	float ply = openfl_TextureSize.y * pxSize / 275.0;
