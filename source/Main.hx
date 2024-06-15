@@ -29,6 +29,11 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
 
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
+
 using StringTools;
 
 class Main extends Sprite
@@ -53,6 +58,15 @@ class Main extends Sprite
 	{
 		super();
 
+		#if android
+		if (VERSION.SDK_INT > 30)
+			Sys.setCwd(Path.addTrailingSlash(Context.getObbDir()));
+		else
+			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+		#elseif ios
+		Sys.setCwd(System.documentsDirectory);
+		#end
+		
 		if (stage != null)
 		{
 			init();
@@ -91,7 +105,7 @@ class Main extends Sprite
 		FlxG.mouse.visible = false;
 		#end
 		
-		collectSystemData();
+		//collectSystemData();
 
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
@@ -111,7 +125,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crashlogs/" + "VsFNaF3_" + dateNow + ".txt";
+		path = "crashlogs/" + "VsFNaF3_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
@@ -126,8 +140,8 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error either in '#mod-issues in PouriaSFMs discord server'\n or @AutisticLulu on Discord\n or to the GitHub page: https://github.com/MeguminBOT/fnf-fnaf3-source/issues\n\nDon't forget to send the Crashlog!!\n\n> Crash Handler written by: sqirra-rng";
 
-		if (!FileSystem.exists("./crash/"))
-			FileSystem.createDirectory("./crash/");
+		if (!FileSystem.exists("crash/"))
+			FileSystem.createDirectory("crash/");
 
 		File.saveContent(path, errMsg + "\n");
 
