@@ -1,7 +1,4 @@
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
 uniform float iTime;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
@@ -20,6 +17,6 @@ vec2 curve(vec2 inp)
 
 void main()
 {
-    vec2 uv = curve(fragCoord/iResolution.xy);
+    vec2 uv = curve(openfl_TextureCoordv.xy);
     fragColor = (abs(uv.x - .5) > .5 || abs(uv.y - .5) > .5? 0. : 1.) * texture(iChannel0, uv);
 }
