@@ -1,7 +1,7 @@
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
+vec2 uv;
+vec2 iResolution;
+vec2 fragCoord;
 uniform float iTime;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
@@ -54,7 +54,10 @@ const float glitchMinimizer = 5.0; // decrease this
 
 void mainImage()
 {
-    // Normalized pixel coordinates (from 0 to 1)
+    fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+    uv = openfl_TextureCoordv.xy;
+    iResolution = openfl_TextureSize;
+     // Normalized pixel coordinates (from 0 to 1)
     vec2 uv = fragCoord/iResolution.xy;
     vec2 a = vec2(uv.x * (iResolution.x / iResolution.y), uv.y);
     vec2 uv2 = vec2(a.x / iResolution.x, exp(a.y));
