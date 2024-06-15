@@ -649,6 +649,12 @@ class FlxAnimationController implements IFlxDestroyable
 		frameIndex = FlxG.random.int(0, frames - 1);
 	}
 
+	@:allow(flixel.animation.FlxAnimation)
+	function getFrameDuration(index:Int)
+	{
+		return _sprite.frames.frames[index].duration;
+	}
+	
 	inline function fireCallback():Void
 	{
 		if (callback != null)
