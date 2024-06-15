@@ -62,7 +62,6 @@ import hxvlc.flixel.FlxVideoSprite;
 import hxvlc.util.Handle;
 import hxvlc.externs.Types;
 import hxvlc.openfl.Video;
-import hxvlc.util.OneOfThree;
 #end
 
 using StringTools;
