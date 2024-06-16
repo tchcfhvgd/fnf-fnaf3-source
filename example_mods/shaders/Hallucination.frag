@@ -49,15 +49,15 @@ uniform int iFrame;
 uniform vec4 iMouse;
 uniform vec4 iDate;
 
-#define Strength 0.003f
-#define Speed 0.6f
+#define Strength 0.003
+#define Speed 0.6
 
-#define NoiseTiling 8.0f
-#define NoiseSpeed 0.5f
+#define NoiseTiling 8.0
+#define NoiseSpeed 0.5
 
-#define PulseSpeed 2.0f
-#define PulseMin 1.0f
-#define PulseMax 2.0f
+#define PulseSpeed 2.0
+#define PulseMin 1.0
+#define PulseMax 2.0
 
 #define M_PI 3.1415926535897932384626433832795
 
@@ -135,7 +135,7 @@ vec2 GetVector(vec2 v, float rad, float noise) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     // define the UVs, make them square by using the same iRes dimension
-	vec2 uv = fragCoord.xy/iResolution.xy;
+vec2 uv = openfl_TextureCoordv.xy;
     
     float mixer = 1.;
     //mixer = 1.-smoothstep(0.,1., (sin(iTime)+2.)/2.-1.)*2.; // uncomment this to animate the effect
