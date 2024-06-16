@@ -229,7 +229,7 @@ class AchievementsMenuState extends MusicBeatState
 
 	override function update(elapsed:Float) 
 	{
-		if (controls.BACK) {
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new FreeplayState());
 		}
