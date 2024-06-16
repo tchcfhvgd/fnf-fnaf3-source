@@ -72,6 +72,10 @@ class OptionsState extends MusicBeatState
 
 		ClientPrefs.saveSettings();
 
+		#if android
+                addVirtualPad(NONE, A_B_X_Y);
+                #end
+		
 		super.create();
 	}
 
@@ -140,18 +144,36 @@ class OptionsState extends MusicBeatState
 		// Handle button actions based on index.
 		switch (index) {
 			case 0: // 'Notecolors'
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.NotesSubState());
 			case 1: // 'Controls'
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.ControlsSubState());
 			case 2: // 'Notedelay'
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
 			case 3: // 'Graphics'
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.GraphicsSettingsSubState());
 			case 4: // 'Visuals'
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.VisualsUISubState());
 			case 5: // 'Gameplay'
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.GameplaySettingsSubState());
 			case 6: // 'Accessibility'
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.AccessibilitySubState());
 		}
 		button.x = 69;
@@ -191,6 +213,18 @@ class OptionsState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		#if mobile
+	 if (virtualPad.buttonX.justPressed)
+		{
+			removeVirtualPad();
+			openSubState(new mobile.MobileControlsSubState());
+		}
+		if (virtualPad.buttonY.justPressed) {
+			removeVirtualPad();
+			openSubState(new mobile.AndroidSettingsSubState());
+		}
+	#end
+		
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
