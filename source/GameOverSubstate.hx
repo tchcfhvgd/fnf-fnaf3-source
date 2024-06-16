@@ -63,6 +63,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		add(camFollowPos);
 
 		FlxTween.tween(deathBG, {alpha: 1}, 6);
+	
+	        #if android
+                addVirtualPad(NONE, A_B);
+                addVirtualPadCamera(false);
+                #end
 	}
 
 	var isFollowingAlready:Bool = false;
