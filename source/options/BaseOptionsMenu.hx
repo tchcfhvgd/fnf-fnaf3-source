@@ -4,6 +4,7 @@ package options;
 import Discord.DiscordClient;
 #end
 import flash.text.TextField;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
