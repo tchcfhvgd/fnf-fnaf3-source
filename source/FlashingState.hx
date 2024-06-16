@@ -46,6 +46,9 @@ class FlashingState extends MusicBeatState
                 warnSprite.alpha = 1;
             }
         });
+	#if android
+        addVirtualPad(NONE, A_B);
+        #end
 	}
 
 	override function update(elapsed:Float)
