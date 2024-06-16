@@ -21,7 +21,7 @@
       {
         vec2 look = uv;
             float window = 1./(1.+20.*(look.y-mod(iTime/4.,1.))*(look.y-mod(iTime/4.,1.)));
-            look.x = look.x + (sin(look.y*10. + iTime)/50.*onOff(4.,4.,.3)*(1.+cos(iTime*80.))*window)*(0.1*2);
+            look.x = look.x + (sin(look.y*10. + iTime)/50.*onOff(4.,4.,.3)*(1.+cos(iTime*80.))*window)*(0.1*2.);
             float vShift = 0.4*onOff(2.,3.,.9)*(sin(iTime)*sin(iTime*20.) +
                                                  (0.5 + 0.1*sin(iTime*200.)*cos(iTime)));
             look.y = mod(look.y + vShift*0.1, 1.);
@@ -101,8 +101,8 @@
 
       gl_FragColor = mix(video,vec4(noise(uv * 75.)),.05);
 
-      if(curUV.x<0 || curUV.x>1 || curUV.y<0 || curUV.y>1){
-        gl_FragColor = vec4(0,0,0,0);
+      if(curUV.x<0. || curUV.x>1. || curUV.y<0. || curUV.y>1.){
+        gl_FragColor = vec4(0.,0.,0.,0.);
       }
 
     }
