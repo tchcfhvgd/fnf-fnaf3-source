@@ -95,7 +95,7 @@ class CreditsState extends FlxState
 
     override function update(elapsed:Float)
     {
-        if (FlxG.keys.justPressed.BACKSPACE || FlxG.keys.justPressed.ESCAPE #if android || FlxG.android.justReleased.BACK)
+        if (FlxG.keys.justPressed.BACKSPACE || FlxG.keys.justPressed.ESCAPE #if android || FlxG.android.justReleased.BACK #end)
         {
             FlxG.switchState(new MainMenuState());
         }
