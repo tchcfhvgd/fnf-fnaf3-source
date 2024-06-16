@@ -853,6 +853,10 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		laneUnderlay.cameras = [camHUD];
+		#if mobile
+                addMobileControls(false);
+                mobileControls.visible = false;
+                #end
 
 		startingSong = true;
 		
@@ -1517,7 +1521,9 @@ class PlayState extends MusicBeatState
 		var ret:Dynamic = callOnLuas('onStartCountdown', [], false);
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
-
+                        #if mobile
+			mobileControls.visible = true;
+			#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 
@@ -3163,6 +3169,9 @@ class PlayState extends MusicBeatState
 		updateTime = false;
 		deathCounter = 0;
 		seenCutscene = false;
+		#if mobile
+		mobileControls.visible = false;
+		#end
 
 		// Achievement Unlock
 		#if ACHIEVEMENTS_ALLOWED
