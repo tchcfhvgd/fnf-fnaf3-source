@@ -127,7 +127,7 @@ class StoryMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.BACK #if android || FlxG.android.justReleased.BACK && !movedBack && !selectedWeek)
+		if (FlxG.android.justReleased.BACK && !movedBack && !selectedWeek)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			movedBack = true;
